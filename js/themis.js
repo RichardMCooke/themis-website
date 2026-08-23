@@ -77,8 +77,8 @@
     if (!hero || reduce) return;
     var h = hero.offsetHeight || 1;
     var p = Math.min(Math.max(window.pageYOffset / h, 0), 1);
-    hero.style.setProperty('--emblem-scale', (1 - 0.6 * p).toFixed(3));
-    hero.style.setProperty('--emblem-fade', (1 - 0.85 * p).toFixed(3));
+    hero.style.setProperty('--emblem-scale', (1 - 0.85 * p).toFixed(3));
+    hero.style.setProperty('--emblem-fade', (1 - 0.35 * p).toFixed(3));
   }
 
   /* --- 4. pinned horizontal rail --- */
@@ -89,9 +89,12 @@
       var sticky = stage.querySelector('.rail-sticky');
       if (!track || !sticky) return;
       if (reduce || window.matchMedia('(max-width:760px)').matches) {
-        track.style.removeProperty('--rail-x'); stage.style.setProperty('--rail-p', 1); return;
+        track.style.removeProperty('--rail-x'); stage.style.setProperty('--rail-p', 1);
+        stage.style.removeProperty('height'); return;
       }
       var travel = Math.max(track.scrollWidth - sticky.clientWidth + 56, 0);
+      /* runway = exactly the horizontal distance to cover, so no dead space below the cards */
+      stage.style.height = (sticky.offsetHeight + travel * 1.1) + 'px';
       var scrollable = stage.offsetHeight - sticky.offsetHeight;
       var passed = -stage.getBoundingClientRect().top + (sticky.offsetTop || 0);
       var p = scrollable > 0 ? Math.min(Math.max(passed / scrollable, 0), 1) : 0;
