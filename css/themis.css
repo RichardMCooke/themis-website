@@ -74,6 +74,26 @@ section{padding:clamp(64px,9vw,128px) 0}
 .hero-in{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 28px}
 .hero-emblem{width:clamp(295px,40vw,517px);margin:0 auto 30px;will-change:transform;
   transform:scale(var(--emblem-scale,1));transform-origin:50% 50%;opacity:var(--emblem-fade,1)}
+/* gilded seal: rings draw in, mark resolves from blur, light sweeps the metal */
+.seal{position:relative;aspect-ratio:642/696}
+.seal-rings{position:absolute;left:-15%;top:-14%;width:130%;height:130%;overflow:visible;fill:none;stroke:var(--gold)}
+.seal-rings circle{transform:rotate(-90deg);transform-origin:50% 50%;stroke-dasharray:1420}
+.seal-rings .ring-a{stroke-width:1.6;animation:seal-ring 1.9s var(--ease) .35s both}
+.seal-rings .ring-b{stroke-width:.8;animation:seal-ring2 2.4s var(--ease) .5s both}
+.seal-mark{position:absolute;inset:0;overflow:hidden;
+  -webkit-mask-image:url(../images/themis-logo-white.png);mask-image:url(../images/themis-logo-white.png);
+  -webkit-mask-size:contain;mask-size:contain;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;
+  -webkit-mask-position:center;mask-position:center;animation:seal-enter 1.15s var(--ease) both}
+.seal-mark img{width:100%;height:100%;object-fit:contain}
+.seal-shine{position:absolute;left:0;right:0;top:-20%;bottom:-20%;
+  background:linear-gradient(90deg,rgba(176,141,62,0) 30%,rgba(226,193,113,.95) 50%,rgba(176,141,62,0) 70%);
+  animation:seal-shine 5.5s cubic-bezier(.5,0,.2,1) 1.2s infinite}
+@keyframes seal-ring{from{stroke-dashoffset:1420;opacity:0}12%{opacity:1}to{stroke-dashoffset:0;opacity:1}}
+@keyframes seal-ring2{from{stroke-dashoffset:-1420;opacity:0}12%{opacity:.55}to{stroke-dashoffset:0;opacity:.55}}
+@keyframes seal-enter{from{opacity:0;transform:scale(.86) translateY(18px);filter:blur(10px)}
+  60%{opacity:1;filter:blur(0)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes seal-shine{0%{transform:translateX(-130%) skewX(-12deg)}
+  38%{transform:translateX(130%) skewX(-12deg)}100%{transform:translateX(130%) skewX(-12deg)}}
 .hero h1{max-width:20ch;margin:0 auto;color:#fff}
 .hero .lede,.hero p{color:var(--onnavy)}
 .hero .lede{margin:26px auto 0;color:var(--onnavy);max-width:56ch}
@@ -243,6 +263,9 @@ textarea{min-height:140px;resize:vertical}
   html{scroll-behavior:auto}
   .reveal,.reveal-group>*,.compare tbody tr{opacity:1!important;transform:none!important;transition:none!important}
   .hero-emblem{transform:none!important;opacity:1!important}
+  .seal-mark,.seal-shine,.seal-rings circle{animation:none!important}
+  .seal-shine{display:none}
+  .seal-rings circle{stroke-dashoffset:0;opacity:1}
   .rail-sticky{position:static;height:auto}
   .rail-track{transform:none!important;overflow-x:auto}
   .scroll-cue span:last-child{animation:none}
