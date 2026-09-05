@@ -272,18 +272,25 @@ textarea{min-height:140px;resize:vertical}
 }
 @media print{.site-head,.scroll-cue,.nav-toggle{display:none}body{color:#000}}
 
-/* ---------- rail: static strip at every width ----------
-   The pinned version needed a section taller than the viewport to provide the
-   scroll runway, and .rail-stage paints that whole runway off-white — so any
-   window taller than the cards showed an empty band. Unpinned, the section is
-   exactly as tall as its content. Same behaviour the 760px rules already gave
-   phones, now applied everywhere. Delete this block to restore the pin. */
+/* ---------- rail: wrapping card grid at every width ----------
+   Was a pinned sideways-scroll rail. Two problems, both structural:
+   (1) pinning needs a section taller than the viewport to supply the scroll
+       runway, and .rail-stage paints that whole runway off-white, so any window
+       taller than the cards showed an empty band;
+   (2) unpinned as a horizontal strip, the only affordance is an overlay
+       scrollbar macOS hides, so on a narrow window the off-screen cards were
+       unreachable in practice.
+   Both disappear if nothing has to scroll. The cards now wrap like the .grid
+   card sets elsewhere on the site: three across on a wide screen, two, then
+   one. Section height always equals its content. Delete this block to restore
+   the pin. */
 .rail-stage{height:auto!important}
 .rail-sticky{position:static;max-height:none;overflow:visible;
-  padding:clamp(64px,9vw,128px) 0 clamp(40px,5vw,72px)}
-.rail-track{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;
-  scroll-padding-inline:28px;-webkit-overflow-scrolling:touch;padding-bottom:26px}
-.rail-card{scroll-snap-align:start}
+  padding:clamp(64px,9vw,128px) 0 clamp(56px,7vw,104px)}
+.rail-track{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
+  gap:24px;transform:none!important;overflow:visible;
+  max-width:var(--wrap);width:100%;margin:0 auto;padding:32px 28px 0}
+.rail-card{flex:initial;min-height:0}
 .rail-progress{display:none}
 
 /* ---------- six-item primary nav ----------
