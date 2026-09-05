@@ -127,6 +127,26 @@
   window.addEventListener('resize', onScroll);
   onScroll();
 
+  /* --- flyer accordion: deep-link opens the matching flyer --- */
+  function openFromHash() {
+    var h = window.location.hash;
+    if (!h || h.length < 2) return;
+    var t = document.querySelector('details.flyer' + h);
+    if (t && !t.open) t.open = true;
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  /* --- flyer accordion: reveal content that opens after first paint --- */
+  Array.prototype.forEach.call(document.querySelectorAll('details.flyer'), function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      Array.prototype.forEach.call(d.querySelectorAll('.reveal, .reveal-group, .compare'), function (el) {
+        el.classList.add('in');
+      });
+    });
+  });
+
   /* --- contact form: no back end yet, hand off to mailto so nothing is lost --- */
   var form = document.querySelector('form[data-mailto]');
   if (form) {
