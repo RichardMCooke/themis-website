@@ -72,7 +72,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 0,rgba(176,141,62,.16),transparent 60%)}
 .hero-in{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 28px}
-.hero-emblem{width:clamp(295px,40vw,517px);margin:0 auto 30px;will-change:transform;
+.hero-emblem{width:clamp(148px,20vw,259px);margin:0 auto 30px;will-change:transform;
   transform:scale(var(--emblem-scale,1));transform-origin:50% 50%;opacity:var(--emblem-fade,1)}
 /* gilded seal: rings draw in, mark resolves from blur, light sweeps the metal */
 .seal{position:relative;aspect-ratio:642/696}
