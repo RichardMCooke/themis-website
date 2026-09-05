@@ -1,188 +1,135 @@
-THEMIS WEBSITE — LINKEDIN PAGE + PRIVACY NOTICE v1.0
-Upload instructions
-====================================================
+THEMIS WEBSITE — HOME PAGE SPACING
+Incremental update, 5 September 2026
+====================================
 
-FILES IN THIS ZIP  (8 files)
-----------------------------
-NEW FILE
-  linkedin-posts.html   The new page. Three LinkedIn articles in the
-                        Information-page accordion, plus a reserved
-                        section for the shorter posts to come.
+FILES IN THIS ZIP  (2 files, both replace existing files)
+---------------------------------------------------------
+  css/themis.css    Hero height and padding.   KEEP IN css/
+  js/themis.js      Rail runway calculation.   KEEP IN js/
 
-REPLACE EXISTING FILES
-  css/themis.css        Nav fix only — see below. KEEP IT IN THE css
-                        FOLDER when you upload.
-  index.html            Top nav + footer links.
-  what-we-do.html       Top nav + footer links.
-  data-and-bi.html      Top nav + footer links.
-  information.html      Top nav + footer links, plus a "Read our
-                        LinkedIn articles" button under the intro.
-  contact.html          Top nav + footer links, plus the privacy link
-                        under the enquiry form.
-  privacy.html          Privacy notice v1.0, plus the nav links.
+No HTML file changes. Nothing else in the repository is affected.
 
-No JS or image files change.
+This zip contains ONLY what has changed since your last upload, as
+requested. The seven HTML files you uploaded earlier today are current
+and should not be re-uploaded.
 
 
-THE CSS CHANGE — ONE BLOCK, NOTHING ELSE TOUCHED
-------------------------------------------------
-"LinkedIn" in the top navigation makes six items plus the Enquire
-button, which overflowed the header bar between roughly 760px and
-1000px wide — the iPad and small-laptop range.
+1. BLUE SPACE ABOVE THE HERO LOGO  (css/themis.css)
+---------------------------------------------------
+Cause: the hero was set to fill the viewport (min-height:100svh) with
+its content centred inside it. Halving the emblem removed roughly 260px
+of content height, and because the block is vertically centred, half of
+that reappeared as empty navy above the logo.
 
-One new block is added to css/themis.css, immediately before the flyer
-accordion section and after the existing 760px media query, so it wins
-on specificity ties. Nothing existing is edited or deleted:
+Changed one rule, the .hero block:
 
-  @media (max-width:900px)              The header switches to the ☰ menu
-                                        button at 900px instead of 760px,
-                                        so the bar never has to fit six
-                                        items in a narrow space. Same
-                                        drop-down styling as before,
-                                        including the navy variant.
+    min-height: 100svh        ->  76svh
+    padding:    100px 0 90px  ->  44px 0 84px
 
-  @media (max-width:1010px)             Between 901px and 1010px the nav
-        and (min-width:901px)           gap tightens to 16px and the link
-                                        size to .9rem, so six items sit
-                                        comfortably rather than just
-                                        barely.
-
-Everything else in the file is byte-identical. The rail, the comparison
-tables, the section index and the reduced-motion rules are untouched, so
-no other page changes behaviour.
-
-Side effect worth knowing: on a tablet in portrait the menu is now
-behind the ☰ button on every page, not just below 760px. That is the
-intended trade — a working menu button beats a cramped or overflowing
-bar.
+The shorter top padding lifts the whole block, and 76svh keeps the hero
+a deliberate stage without forcing a screen height it no longer needs.
+The scroll cue still pins to the bottom, and the emblem's
+scale-on-scroll effect is unaffected — it reads the hero's height at
+runtime, whatever that height is.
 
 
-FOOTER DOWNLOADS COLUMN — NOW IDENTICAL ON ALL SEVEN PAGES
-----------------------------------------------------------
-The footers had drifted: information.html listed all nine PDFs, every
-other page listed only five, so four flyers were missing from most
-footers. Listing them individually also meant editing seven pages every
-time a flyer is added.
+2. WHITE SPACE BELOW THE FIVE MANDATES  (two causes)
+----------------------------------------------------
 
-The column is now three entries, the same on every page:
+2a. THE PINNED BOX DID NOT FILL THE SCREEN  (css/themis.css)
 
-  Downloads
-    The Information library        -> information.html
-    The LinkedIn posts library     -> linkedin-posts.html
-    Founder profile (PDF)          -> downloads/Richard_Cooke_Profile_Themis.pdf
+This was the main one, and it is worse the taller your screen is.
 
-The two library links always reflect whatever those pages hold, so
-adding a flyer or an article needs no footer change anywhere. Only the
-founder profile stays a direct PDF link, since it is the one download
-that is not a flyer and gets asked for by name.
+The rail works by making the section tall enough that scrolling down
+drives the cards sideways, while a sticky box stays pinned under the
+header. That sticky box was set to
 
-The individual flyer PDFs are all still linked from their own flyers on
-the Information page, exactly as before. Nothing has become
-unreachable.
+    max-height: calc(100svh - 70px)
 
+which caps its height but never grows it, so it was only as tall as its
+own content — heading plus cards, roughly 700px. The section behind it
+is deliberately much taller (that height IS the scroll runway), and it
+is painted off-white. On a tall display the remaining 700-odd pixels of
+that off-white sat below the cards for the entire time the section was
+pinned. That is the empty band in your first screenshot.
 
-NAVIGATION — WHERE THE PAGE NOW SITS
-------------------------------------
-  Top nav, every page:
-    Home / What we do / Data & BI / Information / LinkedIn / Contact
-    (plus the Enquire button)
+Changed one word:
 
-  Footer "Pages" column, every page:
-    Home / What we do / Data & BI / Information / LinkedIn posts /
-    Contact / Privacy notice
+    max-height: calc(100svh - 70px)  ->  min-height: calc(100svh - 70px)
 
-  Plus a "Read our LinkedIn articles" button under the intro on
-  information.html.
+The box now fills the pinned area, and because the rule already says
+justify-content:center the heading and cards sit centred in the screen
+with balanced space above and below — which is what the centring was
+there for. No void.
 
-The nav label is "LinkedIn" — short, so the bar stays balanced. The
-page heading and footer say "LinkedIn posts".
+Two guards added so the static fallbacks do not inherit the new
+minimum, since they are not pinned and must hug their content:
+
+    @media (max-width:760px){.rail-sticky{min-height:0}}
+    @media (prefers-reduced-motion:reduce){.rail-sticky{min-height:0}}
 
 
-THE NEW PAGE
-------------
-Layout is deliberately identical to information.html: intro section,
-photo band, numbered expanding accordion on the off-white background,
-closing navy call to action. It uses only classes already in
-css/themis.css and the existing handlers in js/themis.js.
+2b. THE RUNWAY WAS 10% TOO LONG  (js/themis.js)
+-----------------------------------------------
+Cause: the pinned horizontal rail works by making its section tall
+enough that scrolling down drives the cards sideways. The section's
+height was set to the horizontal travel distance PLUS 10%:
 
-Three articles, newest first, each with published date, standfirst,
-full text and a "Read on LinkedIn" button:
+    stage.style.height = (sticky.offsetHeight + travel * 1.1) + 'px';
 
-  01  Building a house of sand              17 May 2026
-  02  The child mentality                   14 May 2026
-  03  KISS KISS — how a toddler taught me   12 May 2026
-      more about leadership clarity than
-      most job descriptions
+That extra 10% is scroll distance with nothing left to move — the cards
+have finished travelling, so you scroll through a screen of empty
+off-white before the next section arrives. The file's own comment says
+the runway should be "exactly the horizontal distance to cover, so no
+dead space below the cards", so the multiplier contradicted the intent.
 
-Each has a deep-link id, so linkedin-posts.html#kiss-kiss opens that
-article directly, exactly like the Information flyers.
+Changed to:
 
-There is no empty "coming soon" section: the page ships with three
-finished articles and nothing else. When you send the shorter posts I
-will add them as further accordion rows, or as a second section, and
-reissue the file.
+    stage.style.height = (sticky.offsetHeight + travel) + 'px';
 
-The photo band reuses images/advisory.jpg. No new image needed.
+One line. The last card now reaches its final position exactly as the
+section ends. This also self-corrects if you add a sixth mandate later:
+the travel distance is measured from the actual track width, so the
+runway grows by precisely the right amount.
 
+This is the change visible at the end of your second screenshot — the
+gap between the last card and "The practice" section.
 
-EDITORIAL CHANGES TO THE ARTICLE TEXT
--------------------------------------
-Your own words, essentially verbatim. Changes, all minor:
-
-  - Two typos corrected: "the the following update" and "you happiness
-    level".
-  - The Four I's / KISS mapping was laid out with spaces and arrows,
-    which does not survive as web text. It is now a three-column table
-    in the site's existing .compare style.
-  - The "---" separators and LinkedIn "see more" artefacts removed.
-  - The Matthew 7 bullets are now three cards, matching how the
-    Information page presents a set of three.
-  - Kay Wenham's list and the job-description quote are set as pull
-    quotes with a gold rule.
-  - Hashtags kept, in small grey type at the foot of article 01 — the
-    only article that carried them.
-
-Nothing added, no argument altered.
+All three fixes affect the home page only. The rail is used nowhere else,
+and no other page has a .hero section.
 
 
 HOW TO UPLOAD
 -------------
-The zip has a css/ folder in it. Keep that structure — themis.css must
-land in css/themis.css, not in the root.
+Two files, two folders — do them separately so neither lands in the
+root by mistake:
 
-Easiest route, two steps:
-
-  1. The seven HTML files: open the repository root, click
-     "Add file" > "Upload files", drag all seven in, commit.
-  2. The stylesheet: open the css folder in the repository, click
-     "Add file" > "Upload files", drag themis.css in, commit.
-
-Or drag the whole unzipped folder onto the repository root in one go —
-GitHub preserves the folder structure — but delete UPLOAD-README.txt
-first if you would rather it did not live in the repository.
+  1. Open the css folder in the repository, "Add file" > "Upload
+     files", drag themis.css in, commit.
+  2. Open the js folder, same again with themis.js, commit.
 
 Commit message suggestion:
-  "Add LinkedIn page, privacy notice v1.0, six-item nav fix"
-
-Azure Static Web Apps will redeploy automatically.
+  "Trim hero height and rail runway on the home page"
 
 
 CHECK AFTER DEPLOYMENT
 ----------------------
-  - Resize a desktop browser slowly from wide to narrow on any page.
-    The nav should switch to the ☰ button at 900px with no overlap at
-    any width in between.
-  - Open the ☰ menu on a phone and confirm LinkedIn is in the list.
-  - Open linkedin-posts.html#kiss-kiss directly; article 03 should be
-    expanded on arrival.
+  - Load the home page. The logo should sit near the top of the navy
+    area, not floating in the middle of it.
+  - Scroll slowly through the five mandates. The cards should sit
+    centred in the screen throughout, with no empty off-white band
+    beneath them, and the moment the last card stops moving the next
+    section should begin.
+  - Check it on your tallest display — that is where the old behaviour
+    was most obvious.
+  - Scroll the same section on a phone. Below 760px the rail becomes a
+    normal swipe-across strip and ignores both changes, as before.
 
 
 STILL OUTSTANDING
 -----------------
-  - The shorter LinkedIn posts. Send Shares.csv or paste the text and I
-    will add them to the page.
+  - The shorter LinkedIn posts and the three article images, awaiting
+    your LinkedIn archive.
   - Three factual claims in the privacy notice to confirm: Microsoft
     UK/EU data residency, whether AML checks apply to your mandates,
     and the 6-year engagement file retention.
-
-LinkedIn URL confirmed correct: linkedin.com/in/themisprofessional.

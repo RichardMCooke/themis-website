@@ -127,7 +127,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 
 /* ---------- pinned horizontal rail (motion move 4) ---------- */
 .rail-stage{position:relative;background:var(--offwhite)}
-.rail-sticky{position:sticky;top:70px;height:auto;max-height:calc(100svh - 70px);padding:44px 0 18px;
+.rail-sticky{position:sticky;top:70px;height:auto;min-height:calc(100svh - 70px);padding:44px 0 18px;
   display:flex;flex-direction:column;justify-content:center;overflow:hidden}
 .rail-head{max-width:var(--wrap);margin:0 auto;padding:0 28px;width:100%}
 .rail-track{display:flex;gap:24px;padding:24px 28px 18px;will-change:transform;
@@ -271,6 +271,11 @@ textarea{min-height:140px;resize:vertical}
   .scroll-cue span:last-child{animation:none}
 }
 @media print{.site-head,.scroll-cue,.nav-toggle{display:none}body{color:#000}}
+
+/* the pinned rail fills the screen while pinned, so no off-white void sits
+   below the cards; the static fallbacks must not inherit that minimum */
+@media (max-width:760px){.rail-sticky{min-height:0}}
+@media (prefers-reduced-motion:reduce){.rail-sticky{min-height:0}}
 
 /* ---------- six-item primary nav ----------
    With LinkedIn added the bar is six items plus the Enquire button, which
