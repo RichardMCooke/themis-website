@@ -57,6 +57,30 @@ intended trade — a working menu button beats a cramped or overflowing
 bar.
 
 
+FOOTER DOWNLOADS COLUMN — NOW IDENTICAL ON ALL SEVEN PAGES
+----------------------------------------------------------
+The footers had drifted: information.html listed all nine PDFs, every
+other page listed only five, so four flyers were missing from most
+footers. Listing them individually also meant editing seven pages every
+time a flyer is added.
+
+The column is now three entries, the same on every page:
+
+  Downloads
+    The Information library        -> information.html
+    The LinkedIn posts library     -> linkedin-posts.html
+    Founder profile (PDF)          -> downloads/Richard_Cooke_Profile_Themis.pdf
+
+The two library links always reflect whatever those pages hold, so
+adding a flyer or an article needs no footer change anywhere. Only the
+founder profile stays a direct PDF link, since it is the one download
+that is not a flyer and gets asked for by name.
+
+The individual flyer PDFs are all still linked from their own flyers on
+the Information page, exactly as before. Nothing has become
+unreachable.
+
+
 NAVIGATION — WHERE THE PAGE NOW SITS
 ------------------------------------
   Top nav, every page:
