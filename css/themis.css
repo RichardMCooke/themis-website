@@ -67,8 +67,8 @@ section{padding:clamp(64px,9vw,128px) 0}
 .actions{display:flex;align-items:center;gap:14px}
 
 /* ---------- hero (scroll stage 1) ---------- */
-.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;
-  background:var(--navy);overflow:hidden;padding:100px 0 90px}
+.hero{position:relative;min-height:76svh;display:grid;place-items:center;text-align:center;
+  background:var(--navy);overflow:hidden;padding:44px 0 84px}
 .hero::after{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 90% at 50% 0,rgba(176,141,62,.16),transparent 60%)}
 .hero-in{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 28px}

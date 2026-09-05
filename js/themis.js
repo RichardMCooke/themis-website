@@ -94,7 +94,7 @@
       }
       var travel = Math.max(track.scrollWidth - sticky.clientWidth + 56, 0);
       /* runway = exactly the horizontal distance to cover, so no dead space below the cards */
-      stage.style.height = (sticky.offsetHeight + travel * 1.1) + 'px';
+      stage.style.height = (sticky.offsetHeight + travel) + 'px';
       var scrollable = stage.offsetHeight - sticky.offsetHeight;
       var passed = -stage.getBoundingClientRect().top + (sticky.offsetTop || 0);
       var p = scrollable > 0 ? Math.min(Math.max(passed / scrollable, 0), 1) : 0;
