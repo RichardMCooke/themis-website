@@ -94,7 +94,7 @@
       }
       var travel = Math.max(track.scrollWidth - sticky.clientWidth + 56, 0);
       /* runway = exactly the horizontal distance to cover, so no dead space below the cards */
-      stage.style.height = (sticky.offsetHeight + travel * 1.1) + 'px';
+      stage.style.height = (sticky.offsetHeight + travel) + 'px';
       var scrollable = stage.offsetHeight - sticky.offsetHeight;
       var passed = -stage.getBoundingClientRect().top + (sticky.offsetTop || 0);
       var p = scrollable > 0 ? Math.min(Math.max(passed / scrollable, 0), 1) : 0;
@@ -126,6 +126,26 @@
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll);
   onScroll();
+
+  /* --- flyer accordion: deep-link opens the matching flyer --- */
+  function openFromHash() {
+    var h = window.location.hash;
+    if (!h || h.length < 2) return;
+    var t = document.querySelector('details.flyer' + h);
+    if (t && !t.open) t.open = true;
+  }
+  window.addEventListener('hashchange', openFromHash);
+  openFromHash();
+
+  /* --- flyer accordion: reveal content that opens after first paint --- */
+  Array.prototype.forEach.call(document.querySelectorAll('details.flyer'), function (d) {
+    d.addEventListener('toggle', function () {
+      if (!d.open) return;
+      Array.prototype.forEach.call(d.querySelectorAll('.reveal, .reveal-group, .compare'), function (el) {
+        el.classList.add('in');
+      });
+    });
+  });
 
   /* --- contact form: no back end yet, hand off to mailto so nothing is lost --- */
   var form = document.querySelector('form[data-mailto]');
