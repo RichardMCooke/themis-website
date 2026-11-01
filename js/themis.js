@@ -147,20 +147,28 @@
     });
   });
 
-  /* --- contact form: no back end yet, hand off to mailto so nothing is lost --- */
-  var form = document.querySelector('form[data-mailto]');
-  if (form) {
+  /* --- contact form: sent via Formspree, confirmed on the page --- */
+  var form = document.querySelector('form[data-formspree]');
+  if (form && window.fetch) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var d = new FormData(form), lines = [];
-      d.forEach(function (v, k) { lines.push(k + ': ' + v); });
-      var route = form.querySelector('[data-route]');
-      var to = (route && route.value) || form.getAttribute('data-mailto');
-      window.location.href = 'mailto:' + to
-        + '?subject=' + encodeURIComponent('Website enquiry — ' + (d.get('Company') || d.get('Name') || 'new'))
-        + '&body=' + encodeURIComponent(lines.join('\n'));
-      var note = form.querySelector('.form-note');
-      if (note) note.textContent = 'Opening your email client… if nothing happens, email ' + to + ' directly.';
+      var status = form.querySelector('.form-status'), btn = form.querySelector('button[type="submit"]');
+      var d = new FormData(form);
+      var sub = form.querySelector('input[name="_subject"]');
+      if (sub) d.set('_subject', 'Website enquiry: ' + (d.get('Company') || d.get('Name') || 'new') + ' (' + d.get('Division') + ')');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch(form.action, { method: 'POST', body: d, headers: { 'Accept': 'application/json' } })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function () {
+          form.innerHTML = '<p class="eyebrow" style="margin:0 0 10px">Thank you</p>'
+            + '<h3 style="margin:0 0 12px">Your message is with us.</h3>'
+            + '<p style="margin:0">A director will reply, usually the same day. If it is urgent, call 01952 37 90 70.</p>';
+        })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = 'Send';
+          status.hidden = false;
+          status.innerHTML = 'Sorry, that did not send. Please try again, or email <a href="mailto:richardcooke@themisprofessional.com">richardcooke@themisprofessional.com</a>.';
+        });
     });
   }
 })();

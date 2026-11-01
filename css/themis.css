@@ -377,3 +377,6 @@ textarea{min-height:140px;resize:vertical}
 .ins-body{max-width:none;padding:0;animation:none}
 .ins-dl li a{font-weight:700}
 @media (prefers-reduced-motion:reduce){.ins-card{transition:none}.ins-card:hover{transform:none}}
+
+.form-status{margin:0;font-size:.95rem;color:var(--navy);border-left:3px solid var(--gold);padding:6px 0 6px 12px}
+.form-status a{color:var(--navy);text-decoration:underline}

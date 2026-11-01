@@ -50,6 +50,10 @@
     <h1>Tell us the problem. We'll tell you if we're the right people for it.</h1>
     <hr class="rule">
     <p class="lede">An hour on the phone with one of our directors costs nothing and usually clarifies more than a proposal.</p>
+    <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:26px">
+      <a class="btn btn-gold" href="https://bookings.cloud.microsoft/book/ThemisProfessionalServices@ThemisProfessional.com/" target="_blank" rel="noopener">Book a 30-minute call</a>
+      <span style="color:var(--onnavy);font-size:.95rem">Pick a time that suits you, or send a note below.</span>
+    </div>
   </div>
 </section>
 
@@ -58,13 +62,15 @@
     <div class="reveal">
       <h2 style="font-size:1.5rem">Send a note</h2>
       <hr class="rule">
-      <form data-mailto="richardcooke@themisprofessional.com">
-        <label>Which division?<select name="Division" data-route>
-          <option value="richardcooke@themisprofessional.com">Professional Services — fractional CFO &amp; advisory</option>
-          <option value="MI@ThemisProfessional.com">Themis MIS — data, BI &amp; reporting</option>
-          <option value="Transform@ThemisProfessional.com">Finance Transformation</option>
-          <option value="Controls@ThemisProfessional.com">Reporting &amp; Controls</option>
-          <option value="richardcooke@themisprofessional.com">Not sure / more than one</option>
+      <form action="https://formspree.io/f/meaardwg" method="POST" data-formspree>
+        <input type="hidden" name="_subject" value="Website enquiry">
+        <label style="position:absolute;left:-9999px" aria-hidden="true">Leave this empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label>
+        <label>Which division?<select name="Division">
+          <option value="Professional Services">Professional Services — fractional CFO &amp; advisory</option>
+          <option value="Themis MIS (data, BI and reporting)">Themis MIS — data, BI &amp; reporting</option>
+          <option value="Finance Transformation">Finance Transformation</option>
+          <option value="Reporting and Controls">Reporting &amp; Controls</option>
+          <option value="Not sure or more than one">Not sure / more than one</option>
         </select></label>
         <label>Name<input type="text" name="Name" autocomplete="name" required></label>
         <label>Company<input type="text" name="Company" autocomplete="organization"></label>
@@ -72,6 +78,7 @@
         <label>Phone<input type="tel" name="Phone" autocomplete="tel"></label>
         <label>What's on your mind?<textarea name="Message" required></textarea></label>
         <button class="btn btn-solid" type="submit">Send</button>
+        <p class="form-status" role="status" aria-live="polite" hidden></p>
         <p class="form-note">Enquiries are answered by a director, usually the same day. No mailing list, no follow-up sequence.</p>
         <p class="form-note" style="margin-top:-8px">What we do with your details: <a href="privacy.html" style="color:var(--navy);text-decoration:underline">privacy notice</a>.</p>
       </form>
