@@ -80,9 +80,29 @@
     <h1 style="max-width:26ch">Full-time CFO or fractional CFO?</h1>
     <hr class="rule">
     <p class="lede">Same level of expertise. Very different cost, speed and commitment.</p>
+    <p style="margin-top:22px"><a class="btn btn-gold" href="#tool">Try the tool</a></p>
     <p class="ins-meta" style="margin-top:18px">Guide</p>
   </div>
 </section>
+
+<section class="tool-sec" id="tool" style="background:var(--offwhite);border-top:1px solid var(--divider)">
+  <div class="wrap">
+    <p class="eyebrow">Try it yourself</p>
+    <h2>What would each option cost you?</h2>
+    <hr class="rule">
+    <p style="max-width:62ch">Move the salary to match the market you are recruiting in, and pick the level of support you think you need. <span class="tool-small">Nothing is stored or sent.</span></p>
+    <div class="tool" data-tool="cost">
+        <div class="cost-in">
+          <label class="cost-sal">Full-time CFO salary <b class="tool-sal">£150K</b>
+            <input type="range" min="130000" max="180000" step="5000" value="150000" aria-label="Full-time CFO salary"></label>
+          <div><p class="tool-q" style="margin-bottom:10px">Level of fractional support</p>
+            <div class="tool-seg" role="group" aria-label="Level of fractional support"><button type="button" aria-pressed="false" data-v="1">Light</button><button type="button" aria-pressed="true" data-v="2">Regular</button><button type="button" aria-pressed="false" data-v="3">Intensive</button></div></div>
+        </div>
+        <div class="tool-result" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
 
 <section style="background:#fff;border-top:1px solid var(--divider);padding-top:clamp(30px,4vw,56px)">
   <div class="wrap">
@@ -240,5 +260,6 @@
 <script src="/js/themis.js"></script>
 <script src="/js/analytics.js"></script>
 <script src="/js/search.js" defer></script>
+<script src="/js/tools.js" defer></script>
 </body>
 </html>
