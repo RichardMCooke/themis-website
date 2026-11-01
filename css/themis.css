@@ -500,3 +500,9 @@ html.srch-open{overflow:hidden}
 .rail-acts{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
 .rail-acts .btn{font-size:.82rem}
 @media (prefers-reduced-motion:reduce){.rail-img img{transition:none}.rail-card:hover .rail-img img{transform:none}}
+
+.rail-tool{display:block;margin-top:14px;padding:12px 14px;border-left:3px solid var(--gold);background:var(--offwhite);font-size:.88rem;line-height:1.45;color:var(--body);text-decoration:none}
+.rail-tool b{display:block;font-family:Georgia,serif;color:var(--navy);margin-bottom:2px}
+.rail-tool span{color:var(--gold);font-weight:700}
+.rail-tool:hover{background:#efece4}
+.rail-tool:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
