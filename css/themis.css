@@ -1,7 +1,7 @@
 /* Themis Professional Services — site styles
-   Brand: Navy #0B1F3A / Gold #B08D3E only. Georgia display, Calibri body. */
+   Brand: Navy #17224A / Gold #B08D3E only. Georgia display, Calibri body. */
 :root{
-  --navy:#0B1F3A; --gold:#B08D3E; --offwhite:#F7F7F5; --divider:#E4E4E0;
+  --navy:#17224A; --gold:#B08D3E; --offwhite:#F7F7F5; --divider:#E4E4E0;
   --body:#3A3A3A; --muted:#8C8C8C; --onnavy:#C9CFD9; --onnavy-dim:#8C97AA;
   --wrap:1180px; --ease:cubic-bezier(.22,.61,.36,1);
 }
@@ -31,7 +31,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 .site-head{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);
   backdrop-filter:saturate(150%) blur(14px);border-bottom:1px solid var(--divider);
   transition:background .4s var(--ease),border-color .4s var(--ease)}
-.site-head.over-navy{background:rgba(11,31,58,.72);border-color:rgba(255,255,255,.14)}
+.site-head.over-navy{background:rgba(23,34,74,.72);border-color:rgba(255,255,255,.14)}
 .site-head.over-navy .brand-name,.site-head.over-navy .nav a{color:#fff}
 .site-head.over-navy .nav a:hover{color:var(--gold)}
 .head-in{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:70px}
@@ -154,7 +154,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 .card.reserved h3{color:var(--muted)}
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:clamp(30px,5vw,68px);align-items:center}
 .ph{background:
-   repeating-linear-gradient(45deg,rgba(11,31,58,.07) 0 8px,transparent 8px 16px);
+   repeating-linear-gradient(45deg,rgba(23,34,74,.07) 0 8px,transparent 8px 16px);
   border:1px solid var(--divider);display:grid;place-items:center;text-align:center;padding:26px;
   font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;color:var(--muted);min-height:280px}
 .on-navy .ph{border-color:rgba(255,255,255,.2);color:var(--onnavy-dim);
@@ -164,7 +164,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 .photo-frame img{width:100%;height:100%;object-fit:cover;display:block}
 .photo-band{position:relative;overflow:hidden;height:clamp(220px,32vw,420px)}
 .photo-band img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.82)}
-.photo-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,31,58,.72),rgba(11,31,58,.12))}
+.photo-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(23,34,74,.72),rgba(23,34,74,.12))}
 .photo-band .cap{position:absolute;left:0;right:0;bottom:clamp(20px,4vw,44px);z-index:1}
 .photo-band .cap p{font-family:Georgia,serif;font-style:italic;color:#fff;font-size:clamp(1.05rem,2vw,1.6rem);margin:0;max-width:26ch}
 ul.ticks{list-style:none;padding:0;margin:0;display:grid;gap:13px}
@@ -229,7 +229,7 @@ textarea{min-height:140px;resize:vertical}
 
 .cookie-bar{position:fixed;left:20px;right:20px;bottom:20px;z-index:60;display:flex;gap:20px;
   align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--navy);color:var(--onnavy);
-  border:1px solid rgba(176,141,62,.5);padding:18px 22px;box-shadow:0 18px 50px rgba(11,31,58,.35);
+  border:1px solid rgba(176,141,62,.5);padding:18px 22px;box-shadow:0 18px 50px rgba(23,34,74,.35);
   max-width:820px;margin:0 auto;font-size:.9rem;line-height:1.65}
 .cookie-bar p{margin:0;max-width:56ch;color:var(--onnavy)}
 .cookie-bar a{color:var(--gold)}
