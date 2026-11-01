@@ -511,3 +511,4 @@ html.srch-open{overflow:hidden}
 .fn-ref a{color:var(--gold);text-decoration:none}
 .footnote{font-size:.8rem;color:var(--muted);max-width:80ch;margin-top:22px;scroll-margin-top:110px}
 .footnote sup{color:var(--gold)}
+.tool-send[hidden],.tool-status[hidden],.form-status[hidden],.tool-result[hidden]{display:none!important}
