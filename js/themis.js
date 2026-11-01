@@ -73,6 +73,7 @@
 
   /* --- 3. emblem scale, driven by hero scroll progress --- */
   var hero = document.querySelector('.hero');
+  if (!hero) { var em = document.querySelector('.hero-emblem'); hero = em ? em.closest('section') : null; }
   function emblem() {
     if (!hero || reduce) return;
     var h = hero.offsetHeight || 1;

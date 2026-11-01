@@ -45,7 +45,7 @@ section{padding:clamp(64px,9vw,128px) 0}
 /* --- Themis MIS (IT / Data division) lockup --- */
 .brand .mis{color:var(--gold)}
 .brand.mis-brand img{width:32px}
-.hero-emblem.emblem{width:clamp(84px,11vw,140px)}
+.hero-emblem.emblem{width:clamp(84px,11vw,140px);transform-origin:0 50%}
 .mis-wordmark{font-family:Georgia,serif;font-weight:700;color:#fff;letter-spacing:.05em;
   font-size:clamp(1.9rem,4vw,3rem);line-height:1;margin:0}
 .mis-wordmark .mis{color:var(--gold)}
