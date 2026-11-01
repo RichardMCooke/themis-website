@@ -506,3 +506,8 @@ html.srch-open{overflow:hidden}
 .rail-tool span{color:var(--gold);font-weight:700}
 .rail-tool:hover{background:#efece4}
 .rail-tool:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.fn-ref{font-size:.62em;margin-left:2px;vertical-align:super;line-height:0}
+.fn-ref a{color:var(--gold);text-decoration:none}
+.footnote{font-size:.8rem;color:var(--muted);max-width:80ch;margin-top:22px;scroll-margin-top:110px}
+.footnote sup{color:var(--gold)}
