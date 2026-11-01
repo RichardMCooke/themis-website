@@ -380,3 +380,25 @@ textarea{min-height:140px;resize:vertical}
 
 .form-status{margin:0;font-size:.95rem;color:var(--navy);border-left:3px solid var(--gold);padding:6px 0 6px 12px}
 .form-status a{color:var(--navy);text-decoration:underline}
+
+/* Which mandate fits? */
+.fit{display:grid;gap:clamp(28px,5vw,64px);grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);align-items:start}
+.fit-intro{position:sticky;top:110px}
+.fit-q{border:0;margin:0 0 26px;padding:0}
+.fit-q legend{font-family:Georgia,serif;font-weight:700;color:var(--navy);font-size:1.12rem;margin-bottom:12px;display:flex;gap:12px;align-items:baseline}
+.fit-n{font-size:.8rem;letter-spacing:.16em;color:var(--gold)}
+.fit-opts{display:flex;flex-wrap:wrap;gap:10px}
+.fit-opt{font:inherit;font-size:.93rem;text-align:left;padding:11px 16px;border:1px solid var(--divider);background:#fff;color:var(--navy);cursor:pointer;border-radius:999px;line-height:1.35}
+.fit-opt:hover{border-color:var(--navy)}
+.fit-opt[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.fit-opt:focus-visible,.fit-reset:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.fit-result{background:var(--navy);color:#fff;padding:28px 30px;border-top:3px solid var(--gold);min-height:90px}
+.fit-wait{margin:0;color:var(--onnavy)}
+.fit-card{padding:16px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+.fit-card h3{color:#fff;margin:0 0 8px}
+.fit-card p{color:var(--onnavy);margin:0 0 10px}
+.fit-meta{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--onnavy-dim)!important}
+.fit-acts{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.fit-reset{font:inherit;font-size:.9rem;background:none;border:0;color:var(--onnavy);text-decoration:underline;cursor:pointer;padding:6px}
+.fit-note{font-size:.9rem;color:var(--onnavy-dim);margin:16px 0 0}
+@media (max-width:860px){.fit{grid-template-columns:1fr}.fit-intro{position:static}}

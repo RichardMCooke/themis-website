@@ -214,12 +214,73 @@
         <span class="num">→</span>
         <h3 style="color:#fff">Not sure which you need?</h3>
         <p style="color:var(--onnavy)">Most engagements start as one and become another. An honest hour with one of our directors will tell us both.</p>
-        <a class="btn btn-gold btn-sm" style="margin-top:auto;align-self:flex-start" href="contact.html">Talk to the team</a>
+        <div style="margin-top:auto;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-gold btn-sm" href="#find-your-fit">Find your fit</a><a class="btn btn-gold btn-sm" href="contact.html">Talk to the team</a></div>
       </article>
     </div>
     <div class="rail-progress"><i></i></div>
   </div>
 </section>
+
+<section id="find-your-fit" style="background:var(--offwhite);border-top:1px solid var(--divider)">
+  <div class="wrap fit">
+    <div class="fit-intro">
+      <p class="eyebrow reveal">Which mandate fits?</p>
+      <h2 class="reveal">Three questions. One clear next step.</h2>
+      <hr class="rule">
+      <p class="reveal">Tap the answer closest to where you are. Nothing you choose is stored or sent anywhere.</p>
+    </div>
+    <div class="fit-body">
+        <fieldset class="fit-q">
+          <legend><span class="fit-n">1</span>Where is the business right now?</legend>
+          <div class="fit-opts"><button type="button" class="fit-opt" aria-pressed="false" data-q="0" data-w="2" data-m="cfo">Growing fast, and finance hasn&#39;t kept up</button><button type="button" class="fit-opt" aria-pressed="false" data-q="0" data-w="2" data-m="growth">Profitable, but margins are under pressure</button><button type="button" class="fit-opt" aria-pressed="false" data-q="0" data-w="2" data-m="exit">Thinking about a sale, investment or succession in the next one to three years</button><button type="button" class="fit-opt" aria-pressed="false" data-q="0" data-w="2" data-m="gov">A founder-led board that needs more structure and challenge</button></div>
+        </fieldset>
+        <fieldset class="fit-q">
+          <legend><span class="fit-n">2</span>What worries you most?</legend>
+          <div class="fit-opts"><button type="button" class="fit-opt" aria-pressed="false" data-q="1" data-w="2" data-m="cfo">Cash, and whether the forecast can be trusted</button><button type="button" class="fit-opt" aria-pressed="false" data-q="1" data-w="2" data-m="growth">Which customers and products actually make money</button><button type="button" class="fit-opt" aria-pressed="false" data-q="1" data-w="2" data-m="exit">What the business is worth, and whether a buyer would agree</button><button type="button" class="fit-opt" aria-pressed="false" data-q="1" data-w="2" data-m="data">Reports that arrive late, contradict each other or nobody trusts</button><button type="button" class="fit-opt" aria-pressed="false" data-q="1" data-w="2" data-m="gov">Who takes over, and how decisions get made</button></div>
+        </fieldset>
+        <fieldset class="fit-q">
+          <legend><span class="fit-n">3</span>How much senior finance time do you need?</legend>
+          <div class="fit-opts"><button type="button" class="fit-opt" aria-pressed="false" data-q="2" data-w="1" data-m="cfo gov">A few days a month, ongoing</button><button type="button" class="fit-opt" aria-pressed="false" data-q="2" data-w="1" data-m="growth exit data">A defined project with a clear end</button><button type="button" class="fit-opt" aria-pressed="false" data-q="2" data-w="1" data-m="">Not sure yet</button></div>
+        </fieldset>
+        <div class="fit-result" id="fit-result" aria-live="polite">
+          <p class="fit-wait">Answer the first two questions to see your best fit.</p>
+        </div>
+      </div>
+  </div>
+</section>
+<script>
+(function(){
+  var M={"cfo": ["Fractional CFO", "Board-grade finance leadership two to eight days a month: reporting, forecasting, cash discipline, controls and the finance team behind them.", "Retainer · 2–8 days / month", "what-we-do.html#cfo"], "growth": ["Growth & margin", "Structural cost reviews, pricing and customer profitability, productivity and working capital — margin recovered where it actually leaks.", "Defined mandate", "what-we-do.html#growth"], "exit": ["Exit readiness & M&A", "Equity story, diligence readiness, buyer-grade reporting, integration and synergy delivery — from first conversation to completion.", "Project · 6–24 months", "what-we-do.html#exit"], "gov": ["Governance & non-executive", "Board structure and cadence, succession, ownership transition — the grown-up governance a family business needs before someone asks for it.", "NED · quarterly or monthly", "what-we-do.html#governance"], "data": ["Data & BI", "Power BI and NetSuite Analytics Warehouse implementation — the back-end model and the front-end interface — so the board reports on numbers it can trust.", "Themis MIS · retained or project", "data-and-bi.html"]};
+  var BOOK='https://bookings.cloud.microsoft/book/ThemisProfessionalServices@ThemisProfessional.com/';
+  var picks={}, out=document.getElementById('fit-result');
+  function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+  function render(){
+    if(picks[0]===undefined||picks[1]===undefined){out.innerHTML='<p class="fit-wait">Answer the first two questions to see your best fit.</p>';return;}
+    var score={};
+    Object.keys(picks).forEach(function(q){var b=picks[q];var w=+b.getAttribute('data-w');(b.getAttribute('data-m')||'').split(' ').filter(Boolean).forEach(function(m){score[m]=(score[m]||0)+w;});});
+    var keys=Object.keys(score).sort(function(a,b){return score[b]-score[a];});
+    var top=keys.filter(function(k){return score[k]===score[keys[0]];}).slice(0,2);
+    var lead=top.length>1?'Two mandates fit equally well':'Your best fit';
+    var html='<p class="eyebrow" style="margin:0 0 14px">'+lead+'</p>';
+    top.forEach(function(k){var m=M[k];
+      html+='<div class="fit-card"><h3>'+e(m[0])+'</h3><p>'+e(m[1])+'</p><p class="fit-meta">'+e(m[2])+'</p>'
+        +'<div class="fit-acts"><a class="btn btn-gold btn-sm" href="'+m[3]+'">Read about this mandate</a></div></div>';});
+    html+='<div class="fit-acts" style="margin-top:18px"><a class="btn btn-gold" href="'+BOOK+'" target="_blank" rel="noopener">Book a 30-minute call</a>'
+      +'<button type="button" class="fit-reset">Start again</button></div>'
+      +'<p class="fit-note">Most engagements start as one and become another. A short call will confirm it.</p>';
+    out.innerHTML=html;
+    out.querySelector('.fit-reset').addEventListener('click',function(){picks={};[].forEach.call(document.querySelectorAll('.fit-opt'),function(b){b.setAttribute('aria-pressed','false');});render();document.querySelector('.fit-opt').focus();});
+  }
+  [].forEach.call(document.querySelectorAll('.fit-opt'),function(b){
+    b.addEventListener('click',function(){
+      var q=b.getAttribute('data-q');
+      [].forEach.call(document.querySelectorAll('.fit-opt[data-q="'+q+'"]'),function(x){x.setAttribute('aria-pressed','false');});
+      b.setAttribute('aria-pressed','true'); picks[q]=b; render();
+    });
+  });
+})();
+</script>
+
 
 <section>
   <div class="wrap">
