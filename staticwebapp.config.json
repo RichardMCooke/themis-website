@@ -3,5 +3,17 @@
     "404": {
       "rewrite": "/404.html"
     }
-  }
+  },
+  "routes": [
+    {
+      "route": "/information.html",
+      "redirect": "/insights.html",
+      "statusCode": 301
+    },
+    {
+      "route": "/linkedin-posts.html",
+      "redirect": "/insights.html",
+      "statusCode": 301
+    }
+  ]
 }

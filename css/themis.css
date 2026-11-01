@@ -346,3 +346,34 @@ textarea{min-height:140px;resize:vertical}
   .flyer>summary .fl-num{display:none}
 }
 @media (prefers-reduced-motion:reduce){.fl-body{animation:none}.fl-ico{transition:none}}
+
+/* Insights library */
+.visually-hidden{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.ins-tools{display:grid;gap:16px;margin-bottom:30px}
+.ins-chips,.ins-kinds{display:flex;flex-wrap:wrap;gap:8px}
+.ins-chip,.ins-kind{font:inherit;font-size:.88rem;padding:8px 14px;border:1px solid var(--divider);background:#fff;color:var(--navy);cursor:pointer;border-radius:999px}
+.ins-chip:hover,.ins-kind:hover{border-color:var(--navy)}
+.ins-chip[aria-pressed="true"],.ins-kind[aria-pressed="true"]{background:var(--navy);border-color:var(--navy);color:#fff}
+.ins-chip:focus-visible,.ins-kind:focus-visible,.ins-search input:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ins-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.ins-search{flex:1 1 280px;max-width:440px}
+.ins-search input{width:100%;font:inherit;padding:11px 14px;border:1px solid var(--divider);background:#fff;color:var(--body)}
+.ins-count{margin:0;font-size:.86rem;color:var(--muted)}
+.ins-grid{display:grid;gap:24px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.ins-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--divider);color:inherit;text-decoration:none;transition:border-color .2s,transform .2s}
+.ins-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.ins-card:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.ins-card[hidden]{display:none}
+.ins-thumb{display:block;aspect-ratio:16/9;overflow:hidden;background:var(--navy)}
+.ins-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ins-thumb-plain{display:flex;align-items:flex-end;padding:18px 22px;background:var(--navy) url("../images/themis-emblem-white.png") no-repeat right 18px center/auto 62%;border-bottom:3px solid var(--gold)}
+.ins-thumb-plain span{font-family:Georgia,serif;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.ins-copy{display:flex;flex-direction:column;gap:8px;padding:22px 24px 24px;flex:1}
+.ins-topic{font-family:Georgia,serif;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.ins-title{font-family:Georgia,serif;font-weight:700;color:var(--navy);font-size:1.12rem;line-height:1.3}
+.ins-sub{color:var(--muted);font-size:.93rem}
+.ins-meta{margin-top:auto;font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.ins-empty{margin-top:24px}
+.ins-body{max-width:none;padding:0;animation:none}
+.ins-dl li a{font-weight:700}
+@media (prefers-reduced-motion:reduce){.ins-card{transition:none}.ins-card:hover{transform:none}}
