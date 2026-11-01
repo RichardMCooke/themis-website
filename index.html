@@ -118,6 +118,7 @@
         <a href="data-and-bi.html">Data &amp; BI</a>
         <a href="insights.html">Insights</a>
       </nav>
+      <button class="search-toggle" type="button" data-search-open aria-label="Search the site" title="Search (press /)"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
       <a class="btn btn-sm" href="contact.html">Enquire</a>
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Menu">☰</button>
     </div>
@@ -144,6 +145,11 @@
       <a class="btn btn-gold" href="https://bookings.cloud.microsoft/book/ThemisProfessionalServices@ThemisProfessional.com/" target="_blank" rel="noopener">Book a conversation</a>
       <a class="btn btn-gold" href="what-we-do.html">What we do</a>
     </div>
+    <form class="hero-search" role="search" data-search-field>
+      <label class="visually-hidden" for="hero-q">Search the site</label>
+      <input id="hero-q" type="search" placeholder="Search the site, e.g. exit readiness, IFRS 18" autocomplete="off">
+      <button type="submit" aria-label="Search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg></button>
+    </form>
   </div>
   <div class="scroll-cue"><span>Scroll</span><span>↓</span></div>
 </section>
@@ -441,5 +447,6 @@
 </footer>
 <script src="js/themis.js"></script>
 <script src="js/analytics.js"></script>
+<script src="/js/search.js" defer></script>
 </body>
 </html>

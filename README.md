@@ -101,3 +101,9 @@ white-reversed PNG exists, drop it in at that filename to replace it.
 ## Brand
 Navy `#0B1F3A` and gold `#B08D3E` only. Georgia for display type, Calibri for body —
 both system fonts, so no webfont loading and no third-party requests.
+
+## Site search
+The search icon in the menu (and the box on the home page) searches the whole site in the
+visitor's browser using `search-index.json`. Nothing is sent anywhere. The index is rebuilt
+automatically by the GitHub publishing workflow on every push. To rebuild it by hand, run
+`python3 tools/build_search_index.py` from this folder. Keyboard: press `/` or Ctrl/Cmd+K to open.
